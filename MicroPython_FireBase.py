@@ -7,8 +7,9 @@ FIREBASE_URL = "https://fir-esp32-4e74e-default-rtdb.firebaseio.com/"  # Replace
 API_KEY = "AIzaSyCyB_uigGhUuOGLcaULp4DOI2pLFeutVRQ"  # Replace with your Web API key
 
 # WiFi details
-SSID = "oneplus10"
-PASSWORD = "m3a5zry8"
+
+SSID = "enter_your_wifi_ssid"
+PASSWORD = "enter_your_wifi_password"
 
 # Connect to WiFi
 def connect_to_wifi():

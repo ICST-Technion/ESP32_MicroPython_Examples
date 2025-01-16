@@ -3,8 +3,8 @@ import ntptime
 import time
 
 # Connect to Wi-Fi
-ssid = 'oneplus10'
-password = 'm3a5zry8'
+ssid = "enter_your_wifi_ssid"
+password = "enter_your_wifi_password"
 
 sta_if = network.WLAN(network.STA_IF)
 sta_if.active(True)
