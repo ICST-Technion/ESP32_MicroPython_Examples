@@ -3,8 +3,8 @@ import urequests
 import time
 
 # Wi-Fi credentials
-SSID = "oneplus10"
-PASSWORD = "m3a5zry8"
+SSID = "enter_your_wifi_ssid"
+PASSWORD = "enter_your_wifi_password"
 
 
 # Connect to Wi-Fi
