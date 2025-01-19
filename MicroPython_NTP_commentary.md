@@ -47,6 +47,21 @@ time.localtime() tuple, making it human-readable.
 
 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
+
+I added a few enhancements to improve stability and error handling:
+
+1. (for _ in range(10) Retry Loop):
+Instead of waiting indefinitely, the code retries 10 times (10 seconds) to connect to Wi-Fi.
+If the connection fails, it prints "Failed to connect to Wi-Fi." instead of crashing.
+
+2. (try-except for NTP Sync):
+ntptime.settime() can fail if there’s no internet or the NTP server is unreachable.
+The try-except block catches this error and prints "NTP time sync failed:" instead of stopping execution.
+
+* These additions make the program more robust, ensuring it doesn’t hang or crash if Wi-Fi or NTP fails.
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+
 Resources and websites:
 
 1.https://www.chatgpt.com/ 2.https://www.perplexity.ai/
