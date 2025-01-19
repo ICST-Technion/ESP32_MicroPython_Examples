@@ -3,7 +3,6 @@ import socket
 import time
 
 # Wi-Fi credentials
-
 SSID = "enter_your_wifi_ssid"
 PASSWORD = "enter_your_wifi_password"
 
@@ -18,11 +17,12 @@ def connect_wifi():
         while not wlan.isconnected():
             time.sleep(1)
     print("Connected to Wi-Fi:", wlan.ifconfig())
+    return wlan.ifconfig()[0]  # Return the IP address
 
 
 # Setup HTTP server
-def start_http_server():
-    addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]  # Listen on port 80
+def start_http_server(ip):
+    addr = socket.getaddrinfo(ip, 80)[0][-1]  # Use the actual IP address
     s = socket.socket()
     s.bind(addr)
     s.listen(1)
@@ -51,5 +51,6 @@ Content-Type: text/html
 
 
 # Main execution
-connect_wifi()
-start_http_server()
+ip = connect_wifi()
+start_http_server(ip)
+
