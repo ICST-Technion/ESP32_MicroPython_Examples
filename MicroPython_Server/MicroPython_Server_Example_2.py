@@ -30,18 +30,15 @@ databases = {
 # Parse request to determine resource and option
 def parse_request(request):
     try:
-        # Decode the request
         request_line = request.decode().split("\r\n")[0]
-        # Extract the path (e.g., /animals/1)
         path = request_line.split(" ")[1]
-        # Split the path into parts
         parts = path.strip("/").split("/")
-        if len(parts) == 2:  # Expecting resource/option
+        if len(parts) == 2:
             resource, option = parts
-            option = int(option)  # Convert to integer
+            option = int(option)
             return resource, option
-    except Exception as e:
-        print("Error parsing request:", e)
+    except:
+        pass
     return None, None
 
 
@@ -57,24 +54,15 @@ def start_http_server(ip):
         cl, addr = s.accept()
         print("Client connected from", addr)
         request = cl.recv(1024)
-        print("Request received:", request)
 
-        # Parse the request
         resource, option = parse_request(request)
 
-        # Generate response
         if resource in databases and 1 <= option <= len(databases[resource]):
-            # Valid request: return the selected option
             response_body = databases[resource][option - 1]
         else:
-            # Invalid request: return an error message
             response_body = "Invalid request. Check the URL and try again."
 
-        # Send HTTP response
-        response = f"""HTTP/1.1 200 OK
-Content-Type: text/plain
-
-{response_body}"""
+        response = f"HTTP/1.1 200 OK\nContent-Type: text/plain\n\n{response_body}"
         cl.send(response)
         cl.close()
 
@@ -82,3 +70,4 @@ Content-Type: text/plain
 # Main execution
 ip = connect_wifi()
 start_http_server(ip)
+
