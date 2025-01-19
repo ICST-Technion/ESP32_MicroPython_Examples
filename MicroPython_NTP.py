@@ -2,31 +2,32 @@ import network
 import ntptime
 import time
 
-# Connect to Wi-Fi
 ssid = "enter_your_wifi_ssid"
 password = "enter_your_wifi_password"
 
 sta_if = network.WLAN(network.STA_IF)
 sta_if.active(True)
-sta_if.connect(ssid, password)
 
-while not sta_if.isconnected():
-    time.sleep(1)
+if not sta_if.isconnected():
+    print("Connecting to Wi-Fi...")
+    sta_if.connect(ssid, password)
+    for _ in range(10):  # Wait up to 10 seconds
+        if sta_if.isconnected():
+            break
+        time.sleep(1)
 
-print('Connected 1  to Wi-Fi')
+if not sta_if.isconnected():
+    print("Failed to connect to Wi-Fi.")
+else:
+    print("Connected to Wi-Fi:", sta_if.ifconfig())
 
-# Set the time from NTP server (UTC time)
-ntptime.settime()
+    # Get NTP time
+    try:
+        ntptime.settime()
+        utc_time = time.time()
+        israel_time_seconds = utc_time + 2 * 3600
+        israel_time_tuple = time.localtime(israel_time_seconds)
+        print("Israel Time:", israel_time_tuple)
+    except Exception as e:
+        print("NTP time sync failed:", e)
 
-# Get the current UTC time in seconds since the epoch
-utc_time = time.time()
-
-# Add the Israel Standard Time offset (2 hours)
-# Adjust this offset based on Daylight Saving Time (DST) if necessary
-israel_time_seconds = utc_time + 2 * 3600
-
-# Convert the adjusted time to a tuple representing local time
-israel_time_tuple = time.localtime(israel_time_seconds)
-
-# Print the Israel time
-print(israel_time_tuple)
