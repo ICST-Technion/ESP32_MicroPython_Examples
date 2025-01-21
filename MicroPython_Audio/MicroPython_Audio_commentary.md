@@ -59,6 +59,9 @@ it to a WAV format and save it onto the ESP32, (you can open the esp32
 filesystem using the built in open folder option in thonny in the top
 left corner ), and run the code using this file.
 
+** Keep in mind that the code has specific audio configurations for the audio file we used, in case you want to use an audio file with different settings ( [32,64 bit] or different sample rate ...) you might need
+need to change the code configuration.
+
 Resources and websites:
 
 1.https://www.chatgpt.com/ 2.https://www.perplexity.ai/
