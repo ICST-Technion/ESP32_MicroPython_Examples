@@ -13,6 +13,7 @@ Initializes the I2S interface for transmitting audio data to the MAX98357A audio
 ### WAV File Playback:
 
 Implements a function to read audio data from a WAV file and stream it to the MAX98357A module, skipping the 44-byte WAV file header.
+**NOTICE: because the header is being skipped, if the WAV file is not in the proper format, it will not be detected.**
 
 ### File Validation:
 
